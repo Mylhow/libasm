@@ -3,6 +3,7 @@ extern __errno_location
 global ft_read
 
 ft_read:
+    push rbx
     mov rax, 0x00
     syscall
     test rax, rax
@@ -15,4 +16,5 @@ _error:
     mov [rax], rbx
     mov rax, -1
 _end:
+	pop rbx
     ret

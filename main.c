@@ -18,16 +18,16 @@ void printStrcmp(char *s1, char *s2)
 void printStrcpy(char *s1, char *s2)
 {
 
-	char *is1 = ft_strdup(s1);
-	char *is2 = ft_strdup(s2);
+	char *is1 = strdup(s1);
+	char *is2 = strdup(s2);
 	char *imp = ft_strcpy(is1, is2);
-	
-	char *ts1 = ft_strdup(s1);
-	char *ts2 = ft_strdup(s2);
+
+	char *ts1 = strdup(s1);
+	char *ts2 = strdup(s2);
 	char *tmp = strcpy(ts1, ts2);
 
-	char *ps1 = ft_strdup(s1);
-	char *ps2 = ft_strdup(s2);
+	char *ps1 = strdup(s1);
+	char *ps2 = strdup(s2);
 
 	printf("[\e[38;5;242m%s\033[0m]-[\e[38;5;82m%s\033[0m]-[\e[38;5;196m%s\033[0m]\t\t'\e[38;5;226m%s\033[0m'\t(\e[38;5;39m%p\033[0m)\n", s1, is1, is2, imp, ft_strcpy(ps1, ps2));
 	printf("[\e[38;5;242m%s\033[0m]-[\e[38;5;82m%s\033[0m]-[\e[38;5;196m%s\033[0m]\t\t'\e[38;5;226m%s\033[0m'\t(\e[38;5;39m%p\033[0m)\n", s1, ts1, ts2, tmp, strcpy(ps1, ps2));
@@ -62,6 +62,9 @@ void printStrdup(char *s1)
 	char *s2 = ft_strdup(s1);
 	char *s3 = strdup(s1);
 	printf("[\e[38;5;242m%s\033[0m] (\e[38;5;82m%lu\033[0m)\t[\e[38;5;196m%s\033[0m]\t(\e[38;5;226m%lu\033[0m) {\e[38;5;242m%p\033[0m} {\e[38;5;242m%p\033[0m}\n", s1, sizeof(s1), s2, sizeof(s2), s1, s2);
+	errno = 0;
+	printf("%d %s\n", errno, strerror(errno));
+
 	printf("[\e[38;5;242m%s\033[0m] (\e[38;5;82m%lu\033[0m)\t[\e[38;5;196m%s\033[0m]\t(\e[38;5;226m%lu\033[0m) {\e[38;5;242m%p\033[0m} {\e[38;5;242m%p\033[0m}\n", s1, sizeof(s1), s3, sizeof(s3), s1, s3);
 	printf("%d %s\n", errno, strerror(errno));
 	printf(">>>>>>>>>>>>>>>>>>\n");

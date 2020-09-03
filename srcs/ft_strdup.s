@@ -3,8 +3,9 @@ extern __errno_location, malloc, ft_strlen, ft_strcpy
 global ft_strdup
 
 ft_strdup:
-    call ft_strlen
+    push rbx
     push rdi
+    call ft_strlen
     mov rdi, rax
     call malloc
     test rax, rax
@@ -20,6 +21,9 @@ _error:
 _end:
     pop rdi
     mov rsi, rdi
+    push rdi
     mov rdi, rax
     call ft_strcpy
+    pop rdi
+    pop rbx
     ret
