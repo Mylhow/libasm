@@ -22,16 +22,12 @@ void printStrcpy(char *s1, char *s2)
 	char *is2 = strdup(s2);
 	char *imp = ft_strcpy(is1, is2);
 
-	char *ts1 = strdup(s1);
-	char *ts2 = strdup(s2);
-	char *tmp = strcpy(ts1, ts2);
-
-	char *ps1 = strdup(s1);
-	char *ps2 = strdup(s2);
-
-	printf("[\e[38;5;242m%s\033[0m]-[\e[38;5;82m%s\033[0m]-[\e[38;5;196m%s\033[0m]\t\t'\e[38;5;226m%s\033[0m'\t(\e[38;5;39m%p\033[0m)\n", s1, is1, is2, imp, ft_strcpy(ps1, ps2));
-	printf("[\e[38;5;242m%s\033[0m]-[\e[38;5;82m%s\033[0m]-[\e[38;5;196m%s\033[0m]\t\t'\e[38;5;226m%s\033[0m'\t(\e[38;5;39m%p\033[0m)\n", s1, ts1, ts2, tmp, strcpy(ps1, ps2));
+	printf("[\e[38;5;242m%s\033[0m]-[\e[38;5;82m%s\033[0m]-[\e[38;5;196m%s\033[0m]\t\t'\e[38;5;226m%s\033[0m'\t(\e[38;5;39m%p - %p - ", s1, is1, is2, imp, is1, imp);
+	char *tmp = strcpy(is1, is2);
+	printf("%p\033[0m)\n", tmp);
 	printf(">>>>>>>>>>>>>>>>>>\n");
+	free(is1);
+	free(is2);
 }
 
 void printWrite(int fd, char *s, size_t len)
@@ -39,7 +35,7 @@ void printWrite(int fd, char *s, size_t len)
 	errno = 0;
 	int val1 = ft_write(fd, s, len);
 	printf("[\e[38;5;82m%d\033[0m]\t'\e[38;5;196m%s\033[0m'\t[\e[38;5;82m%zu\033[0m] = [\e[38;5;196m%d\033[0m]\t(\e[38;5;242m%d\033[0m)-(\e[38;5;242m%s\033[0m)\n", fd, s, len, val1, errno, strerror(errno));
-	
+
 	errno = 0;
 	int val2 = write(fd, s, len);
 	printf("[\e[38;5;82m%d\033[0m]\t'\e[38;5;196m%s\033[0m'\t[\e[38;5;82m%zu\033[0m] = [\e[38;5;196m%d\033[0m]\t(\e[38;5;242m%d\033[0m)-(\e[38;5;242m%s\033[0m)\n", fd, s, len, val2, errno, strerror(errno));
@@ -50,10 +46,11 @@ void printRead(int fd, char *s, size_t len)
 	errno = 0;
 	int val1 = ft_read(fd, s, len);
 	printf("[\e[38;5;82m%d\033[0m]\t'\e[38;5;196m%s\033[0m'\t[\e[38;5;82m%zu\033[0m] = [\e[38;5;196m%d\033[0m]\t(\e[38;5;242m%d\033[0m)-(\e[38;5;242m%s\033[0m)\n", fd, s, len, val1, errno, strerror(errno));
-	
+
 	errno = 0;
 	int val2 = read(fd, s, len);
 	printf("[\e[38;5;82m%d\033[0m]\t'\e[38;5;196m%s\033[0m'\t[\e[38;5;82m%zu\033[0m] = [\e[38;5;196m%d\033[0m]\t(\e[38;5;242m%d\033[0m)-(\e[38;5;242m%s\033[0m)\n", fd, s, len, val2, errno, strerror(errno));
+	free(s);
 }
 
 void printStrdup(char *s1)
@@ -61,13 +58,12 @@ void printStrdup(char *s1)
 
 	char *s2 = ft_strdup(s1);
 	char *s3 = strdup(s1);
-	printf("[\e[38;5;242m%s\033[0m] (\e[38;5;82m%lu\033[0m)\t[\e[38;5;196m%s\033[0m]\t(\e[38;5;226m%lu\033[0m) {\e[38;5;242m%p\033[0m} {\e[38;5;242m%p\033[0m}\n", s1, sizeof(s1), s2, sizeof(s2), s1, s2);
+	printf("[\e[38;5;242m%s\033[0m] (\e[38;5;82m%lu\033[0m)\t[\e[38;5;196m%s\033[0m]\t(\e[38;5;226m%lu\033[0m) {\e[38;5;242m%p - %p - %p\033[0m}\n", s1, sizeof(s1), s2, sizeof(s2), s1, s2, s3);
 	errno = 0;
 	printf("%d %s\n", errno, strerror(errno));
-
-	printf("[\e[38;5;242m%s\033[0m] (\e[38;5;82m%lu\033[0m)\t[\e[38;5;196m%s\033[0m]\t(\e[38;5;226m%lu\033[0m) {\e[38;5;242m%p\033[0m} {\e[38;5;242m%p\033[0m}\n", s1, sizeof(s1), s3, sizeof(s3), s1, s3);
-	printf("%d %s\n", errno, strerror(errno));
 	printf(">>>>>>>>>>>>>>>>>>\n");
+	free(s2);
+	free(s3);
 }
 
 int main(int ac, char **av)
@@ -166,9 +162,8 @@ int main(int ac, char **av)
 		printStrdup("Pokemon");
 		printStrdup("Baz");
 		printStrdup("Pos");
-		printStrdup("Ballon Rouge");
 		printStrdup(av[1]);
-		printStrdup("");
+		printStrdup("x");
 	}
 	return (0);
 }
