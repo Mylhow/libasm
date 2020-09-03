@@ -108,6 +108,7 @@ int main(int ac, char **av)
 		printStrcmp("A", "A");
 		printStrcmp("", "");
 		printStrcmp("Olivier de carglass !", av[1]);
+		printStrcmp("\xff\xfe", "\xff");
 	}
 	if (type == 3 || type == 0)
 	{
