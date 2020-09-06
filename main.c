@@ -59,11 +59,12 @@ void printStrdup(char *s1)
 	char *s2 = ft_strdup(s1);
 	char *s3 = strdup(s1);
 	printf("[\e[38;5;242m%s\033[0m] (\e[38;5;82m%lu\033[0m)\t[\e[38;5;196m%s\033[0m]\t(\e[38;5;226m%lu\033[0m) {\e[38;5;242m%p - %p - %p\033[0m}\n", s1, sizeof(s1), s2, sizeof(s2), s1, s2, s3);
-	errno = 0;
 	printf("%d %s\n", errno, strerror(errno));
 	printf(">>>>>>>>>>>>>>>>>>\n");
-	free(s2);
-	free(s3);
+	if (!s2)
+		free(s2);
+	if (!s3)
+		free(s3);
 }
 
 int main(int ac, char **av)

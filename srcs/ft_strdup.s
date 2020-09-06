@@ -1,21 +1,22 @@
 section .text
-extern __errno_location, malloc, ft_strlen, ft_strcpy
+extern malloc, ft_strlen, ft_strcpy
 global ft_strdup
 
 ft_strdup:
-    call ft_strlen
     push rdi
+    call ft_strlen
     inc rax
     mov rdi, rax
     call malloc
     pop rdi
     cmp rax, 0
-    jz  _error
+    je  _error
     jmp _end
 
 _error:
-    call __errno_location
-    xor rax, rax
+    mov rax, 0
+    ret
+
 _end:
     push rdi
 	push rsi
