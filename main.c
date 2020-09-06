@@ -152,7 +152,7 @@ int main(int ac, char **av)
 
 		printf(">>>>>>>>>>>>>>>>>>\n");
 		int fd3 = open("srcs/ft_strcmp.s", O_RDONLY);
-		char *s3 = "";
+		char *s3 = malloc(sizeof(char));
 		printRead(fd3, s3, 5);
 		close(fd3);
 	}
